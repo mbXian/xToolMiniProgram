@@ -1,0 +1,9 @@
+<view class="content">
+  <view class="btnGroup">
+    <view class="item orange" bindtap="handleToCal">计算器</view>
+    <view class="item orange" bindtap="handleBase64">base64</view>
+    <view class="item orange" bindtap="handleMD5">MD5</view>
+    <view class="item orange" bindtap="handleMore">更多</view>
+  </view>
+
+</view>

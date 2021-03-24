@@ -1,0 +1,16 @@
+.content{
+  height:100%;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 30rpx;
+}
+
+button{
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.font-break {
+  word-break:break-all;
+  font-size: 15px;
+}

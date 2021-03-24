@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/cal/cal",
+    "pages/calList/list",
+    "pages/base64/base64",
+    "pages/md5/md5"
+  ],
+  
+  "window": {
+    "navigationBarBackgroundColor": "#666666",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "阿兵生活助手"
+  },
+  "sitemapLocation": "sitemap54.json"
+}

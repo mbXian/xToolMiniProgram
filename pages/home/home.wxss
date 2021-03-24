@@ -1,0 +1,24 @@
+
+.content{
+  height:100%;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 30rpx;
+}
+
+.btnGroup{
+  display: flex;
+  flex-direction: row;
+}
+.item{
+  width: 160rpx;
+  height: 150rpx;
+  margin: 10rpx;
+  text-shadow: 0 1px 1px rgb(0, 0, 3);
+  text-align: center;
+  line-height: 150rpx;
+  color: white;
+  border: solid 1px lightgray;
+  border-radius: 5px;
+  background: green;
+}
