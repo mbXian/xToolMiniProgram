@@ -1,0 +1,6 @@
+.content{
+  height:100%;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 30rpx;
+}

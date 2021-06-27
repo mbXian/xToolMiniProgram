@@ -5,15 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    md5OriginalData: '',
-    md5EncodeData: ''
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('weather page = ' + JSON.stringify(getApp().openId));
   },
 
   /**
@@ -74,16 +73,20 @@ Page({
 
   // 加密
   handleEncodeMd5() {
-    if (this.data.md5OriginalData === undefined || this.data.md5OriginalData === '') {
-      wx.showToast({
-        title: '请先输入内容！',
-        icon: 'error',
-        duration: 2000
-      }) 
-    }
-    var md5Utils  = require('../../utils/md5');
-    console.log(md5Utils.hexMD5(this.data.md5OriginalData));
-    this.setData({ md5EncodeData: md5Utils.hexMD5(this.data.md5OriginalData)});
+    wx.request({
+      url: 'http://47.110.93.171:8091/weather/getRealTimeData', //仅为示例，并非真实的接口地址
+      data: {
+        
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'accept': 'application/json;charset=UTF-8'
+      },
+      success (res) {
+        console.log(res.data)
+      }
+    })
   }
 
 })

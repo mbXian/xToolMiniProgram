@@ -1,9 +1,14 @@
 <view class="content">
   <view class="btnGroup">
-    <view class="item orange" bindtap="handleToCal">计算器</view>
-    <view class="item orange" bindtap="handleBase64">base64</view>
-    <view class="item orange" bindtap="handleMD5">MD5</view>
-    <view class="item orange" bindtap="handleMore">更多</view>
+    <view class="item orange" bindtap="handleNav" data-tag="cal">计算器</view>
+    <view class="item orange" bindtap="handleNav" data-tag="base64">base64</view>
+    <view class="item orange" bindtap="handleNav" data-tag="md5">MD5</view>
+  </view>
+
+  <view class="btnGroup">
+    <view class="item orange" bindtap="handleNav" data-tag="weather">Weather</view>
+    <view class="item orange" bindtap="handleNav" data-tag="runData">runData</view>
+    <view class="item orange" bindtap="handleNav" data-tag="more">更多</view>
   </view>
 
 </view>

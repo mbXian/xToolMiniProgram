@@ -1,0 +1,7 @@
+<view class="content">
+    <view>
+        <view style="height:30px;" wx:for="{{runDataList}}" wx:for-item="runDataItem">
+        <text>{{runDataItem.dateFormat}}：{{runDataItem.step}}</text>
+        </view>
+    </view>   
+</view>

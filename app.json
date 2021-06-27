@@ -4,9 +4,15 @@
     "pages/cal/cal",
     "pages/calList/list",
     "pages/base64/base64",
-    "pages/md5/md5"
+    "pages/md5/md5",
+    "pages/weather/weather",
+    "pages/runData/runData"
   ],
-  
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
   "window": {
     "navigationBarBackgroundColor": "#666666",
     "navigationBarTextStyle": "white",

@@ -1,5 +1,80 @@
 Page({
-  data: { name: '' },
+  data: { 
+    name: '' 
+  },
+
+    /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    wx.login({
+      success (res) {
+        if (res.code) {
+          if (getApp().openId == null) {
+            //请求openId
+            wx.request({
+              url: 'http://localhost:8091/wechat/getSession?jsCode=' + res.code,
+              success: (getSessionRes) => {
+                if (getSessionRes.data.data) {
+                  getApp().openId = getSessionRes.data.data.openId;
+                }
+              }
+            }) 
+          }
+
+          // wx.getLocation({
+          //   type: 'wgs84',
+          //   success (res) {
+          //     const latitude = res.latitude
+          //     const longitude = res.longitude
+          //     const speed = res.speed
+          //     const accuracy = res.accuracy
+          //     console.log(JSON.stringify(res));
+          //   }
+          //  })
+           
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    })    
+  },
+
+  handleNav(e) {
+    let tag = e.currentTarget.dataset.tag;
+    let userInfo = getApp().userInfo;
+    if (userInfo) {
+      this.navToPageByTag(tag)
+    } else {
+      // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+      // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+      wx.getUserProfile({
+        desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+        success: (res) => {
+          let appInstance = getApp()
+          appInstance.userInfo = res.userInfo
+          this.navToPageByTag(tag)
+        }
+      })
+    }
+  },
+
+  navToPageByTag(tag) {
+    if ('cal' === tag) {
+      this.handleToCal()
+    } else if ('base64' === tag) {
+      this.handleBase64()
+    } else if ('md5' === tag) {
+      this.handleMD5()
+    } else if ('weather' === tag) {
+      this.handleWeather()
+    } else if ('runData' === tag) {
+      this.handleRunData()
+    } else if ('more' === tag) {
+      this.handleMore()
+    }
+  },
+
   handleToCal() {
     wx.navigateTo({
       url: '../cal/cal'
@@ -26,39 +101,16 @@ Page({
     })
   },
 
-  base64Encode: function (input)
-  {
-      var output = "";
-      var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
-      var i = 0;
+  handleWeather() {
+    wx.navigateTo({
+      url: '../weather/weather'
+    })
+  },
 
-      input = Base64._utf8_encode(input);
-
-      while (i < input.length)
-      {
-          chr1 = input.charCodeAt(i++);
-          chr2 = input.charCodeAt(i++);
-          chr3 = input.charCodeAt(i++);
-
-          enc1 = chr1 >> 2;
-          enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-          enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-          enc4 = chr3 & 63;
-
-          if (isNaN(chr2))
-          {
-              enc3 = enc4 = 64;
-          }
-          else if (isNaN(chr3))
-          {
-              enc4 = 64;
-          }
-
-          output = output +
-              this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
-              this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
-      } // Whend 
-
-      return output;
+  handleRunData() {
+    wx.navigateTo({
+      url: '../runData/runData'
+    })
   }
+
 });
