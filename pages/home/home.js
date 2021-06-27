@@ -1,6 +1,7 @@
 Page({
-  data: { 
-    name: '' 
+  data: {
+    nickName: '',
+    avatarUrl: ''
   },
 
     /**
@@ -17,30 +18,35 @@ Page({
               success: (getSessionRes) => {
                 if (getSessionRes.data.data) {
                   getApp().openId = getSessionRes.data.data.openId;
+                  wx.getLocation({
+                    type: 'wgs84',
+                    success (res) {
+                      const latitude = res.latitude
+                      const longitude = res.longitude
+                      getApp().latitude = latitude;
+                      getApp().longitude = longitude;
+                    },
+                    fail (error) {
+                      console.log('位置未开启');
+                    }
+                   })
                 }
               }
             }) 
           }
-
-          // wx.getLocation({
-          //   type: 'wgs84',
-          //   success (res) {
-          //     const latitude = res.latitude
-          //     const longitude = res.longitude
-          //     const speed = res.speed
-          //     const accuracy = res.accuracy
-          //     console.log(JSON.stringify(res));
-          //   }
-          //  })
-           
         } else {
           console.log('登录失败！' + res.errMsg)
         }
+      },
+      fail (error) {
+        console.log('error');
       }
     })    
   },
 
   handleNav(e) {
+    var that = this;
+
     let tag = e.currentTarget.dataset.tag;
     let userInfo = getApp().userInfo;
     if (userInfo) {
@@ -53,6 +59,11 @@ Page({
         success: (res) => {
           let appInstance = getApp()
           appInstance.userInfo = res.userInfo
+          console.log(JSON.stringify(appInstance.userInfo));
+          that.setData({
+            nickName: res.userInfo.nickName,
+            avatarUrl: res.userInfo.avatarUrl
+          })
           this.navToPageByTag(tag)
         }
       })
